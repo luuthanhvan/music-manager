@@ -1,0 +1,9 @@
+.link{
+    text-decoration: none;
+    color: black;
+}
+
+.btn span{
+    color: black;
+    font-weight: bold;
+}
