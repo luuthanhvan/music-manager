@@ -9,7 +9,6 @@ function Song(){
     const [listSongs, setListSongs] = useState([]);
 
     useEffect(() => {
-        // getAll().then(listSongs => { setListSongs(listSongs) });
         initSongs();
     }, [listSongs]);
 

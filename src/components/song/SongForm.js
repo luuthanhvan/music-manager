@@ -4,13 +4,12 @@ import { Formik, Form, } from 'formik';
 import FormikControl from '../formik_custom/FormikControl';
 
 function SongForm(props){
-    const {song, title, onSubmit, isEditForm, validationSchema} = props;
+    const {song, title, onSubmit, onChooseFile, isEditForm, validationSchema} = props;
 
     const initialValues = useMemo(() => ({
         name: song ? song.name : '',
         genre: song ? song.genre : '',
-        singer: song ? song.singer : '',
-        link: song ? song.link : '',
+        singer: song ? song.singer : ''
     }), [song]);
 
     return(
@@ -57,6 +56,8 @@ function SongForm(props){
                                     control='input'
                                     label='Link'
                                     name='link'
+                                    type="file"
+                                    onChange={onChooseFile}
                                 />
                             </div>
                         </div>
@@ -67,7 +68,7 @@ function SongForm(props){
                                 type="submit" 
                                 disabled={isEditForm ? !formik.isValid : !(formik.isValid && formik.dirty)}
                             >
-                                {isEditForm ? "Save" : "Create"}
+                                {isEditForm ? <span>Save</span> : <span>Create</span>}
                             </button>
                             <button className="btn col">
                                 <NavLink to='/' className='link'><span>Back</span></NavLink>

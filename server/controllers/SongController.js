@@ -1,12 +1,22 @@
 const Song = require('../models/Song');
 const httpResponse = require('../services/HttpResponse');
 const { mutipleMongooseToObject, mongooseToObject } = require('../services/Mongoose');
+const baseUrl = "http://localhost:5000";
 
 class SongController{
     
     async store(req, res){
         try{
-            const song = new Song(req.body);
+            const pathToFile = `/files/${req.file.filename}`,
+                data = req.body;
+
+            const song = new Song({
+                name: data.name,
+                genre: data.genre,
+                singer: data.singer,
+                link: pathToFile,
+            });
+
             await song.save();
             return httpResponse.successResponse(res, "The song successfully created!");
         }
@@ -18,6 +28,10 @@ class SongController{
     async getAll(req, res){
         try{
             let songs = await Song.find({});
+            songs.forEach(song => {
+               song.link = baseUrl + song.link;
+            });
+
             return httpResponse.successResponseWithData(res, 'The songs successfully fetched', { songs: mutipleMongooseToObject(songs)});
         }
         catch(error){

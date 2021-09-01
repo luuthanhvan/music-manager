@@ -5,8 +5,7 @@ const SERVER_URL = "http://localhost:5000";
 const validationSchema = Yup.object({
     name: Yup.string().required("Required"),
     genre: Yup.string().required('Required'),
-    singer: Yup.string().required("Required"),
-    link: Yup.string().required('Required'),
+    singer: Yup.string().required("Required")
 });
 
 async function getAll(){
