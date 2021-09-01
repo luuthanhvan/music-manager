@@ -31,3 +31,5 @@ route(app);
 app.listen(process.env.SERVER_PORT, process.env.HOSTNAME, () => {
     console.info(`Server running at http://${process.env.HOSTNAME}:${process.env.SERVER_PORT}`)
 });
+
+module.exports = app;

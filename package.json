@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "formik": "^2.2.9",
@@ -28,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test-song": "cross-env NODE_ENV=test mocha --watch server/test/song.js"
   },
   "eslintConfig": {
     "extends": [
@@ -50,7 +52,6 @@
   },
   "devDependencies": {
     "mocha": "^9.1.1",
-    "redux-devtools-extension": "^2.13.9",
     "supertest": "^6.1.6"
   }
 }

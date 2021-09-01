@@ -9,7 +9,7 @@ function SongForm(props){
     const initialValues = useMemo(() => ({
         name: song ? song.name : '',
         genre: song ? song.genre : '',
-        singer: song ? song.singer : ''
+        singer: song ? song.singer : '',
     }), [song]);
 
     return(

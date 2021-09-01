@@ -18,7 +18,7 @@ class SongController{
             });
 
             await song.save();
-            return httpResponse.successResponse(res, "The song successfully created!");
+            return httpResponse.successResponse(res, 201, "The song successfully created!");
         }
         catch(error){
             return httpResponse.errorResponse(res, error);
@@ -32,7 +32,7 @@ class SongController{
                song.link = baseUrl + song.link;
             });
 
-            return httpResponse.successResponseWithData(res, 'The songs successfully fetched', { songs: mutipleMongooseToObject(songs)});
+            return httpResponse.successResponseWithData(res, 200, 'The songs successfully fetched', { songs: mutipleMongooseToObject(songs)});
         }
         catch(error){
             return httpResponse.errorResponse(res, error);
@@ -43,7 +43,8 @@ class SongController{
         try{
             const songId = req.params.id;
             let song = await Song.findById(songId);
-            return httpResponse.successResponseWithData(res, 'The songs successfully fetched', { song: mongooseToObject(song)})
+            song.link = baseUrl + song.link;
+            return httpResponse.successResponseWithData(res, 200, 'The songs successfully fetched', { song: mongooseToObject(song)})
         }
         catch(error){
             return httpResponse.errorResponse(res, error);
@@ -55,7 +56,7 @@ class SongController{
             const newSong = req.body;
             const songId = req.params.id;
             await Song.findByIdAndUpdate({_id: songId}, newSong, {new: true});
-            return httpResponse.successResponse(res, "The song successfully updated!");
+            return httpResponse.successResponse(res, 200, "The song successfully updated!");
         }
         catch(error){
             return httpResponse.errorResponse(res, error);
@@ -66,7 +67,7 @@ class SongController{
         try{
             const songId = req.params.id;
             await Song.deleteOne({_id: songId});
-            return httpResponse.successResponse(res, "The song successfully deleted!");
+            return httpResponse.successResponse(res, 200, "The song successfully deleted!");
         }
         catch(error){
             return httpResponse.errorResponse(res, error);

@@ -1,18 +1,18 @@
-exports.successResponse = function (res, msg) {
+exports.successResponse = function (res, status, msg) {
 	var data = {
 		status: 1,
 		message: msg
 	};
-	return res.status(200).json(data);
+	return res.status(status).json(data);
 };
 
-exports.successResponseWithData = function (res, msg, data) {
+exports.successResponseWithData = function (res, status, msg, data) {
 	var resData = {
 		status: 1,
 		message: msg,
 		data: data
 	};
-	return res.status(200).json(resData);
+	return res.status(status).json(resData);
 };
 
 exports.errorResponse = function (res, msg) {
